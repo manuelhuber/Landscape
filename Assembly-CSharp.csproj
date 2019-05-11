@@ -59,7 +59,7 @@
   <ItemGroup>
     <Compile Include="Assets\Grimity\Collections\ListExtensions.cs" />
     <Compile Include="Assets\Grimity\Loops\Loop2D.cs" />
-    <Compile Include="Assets\Grimity\rng\Perlin.cs" />
+    <Compile Include="Assets\Grimity\Rng\Perlin.cs" />
     <Compile Include="Assets\Terrain\TerrainGenerator.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>/Users/grim/Landscape/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
