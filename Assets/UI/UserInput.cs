@@ -1,3 +1,4 @@
+using Buildings;
 using Grimity.Cursor;
 using Grimity.GameObjects;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class UserInput : MonoBehaviour {
 
     private DraggableObject _draggedObject;
     private bool _dragObject;
+    private Placeable _placeable;
 
     private void Start() {
         _camera = GetComponent<Camera>();
@@ -29,8 +31,8 @@ public class UserInput : MonoBehaviour {
         var leftClickUp = Input.GetMouseButtonUp(0);
 
         if (Input.GetKeyDown(KeyCode.Space)) {
-            Debug.Log("PRESSED BUILD BUTTON");
-            AttachToCursor(GameObject.CreatePrimitive(PrimitiveType.Cube));
+            var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            AttachToCursor(cube);
         }
 
         if (leftClickUp && _dragObject) {
@@ -41,9 +43,12 @@ public class UserInput : MonoBehaviour {
 
     private void DetachFromCursor() {
         _dragObject = false;
+        _placeable.Place();
     }
 
     private void AttachToCursor(GameObject gameObject) {
+        _placeable = gameObject.AddComponent<Placeable>();
+
         _dragObject = true;
         _draggedObject = new DraggableObject(gameObject, Geometry.LowerCenter(gameObject));
     }

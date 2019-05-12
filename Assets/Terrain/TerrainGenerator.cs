@@ -96,7 +96,6 @@ public class TerrainGenerator : MonoBehaviour {
             RenderMesh();
         }
 
-            Debug.Log("foo");
         if (Height < 1) {
             Height = 1;
         }
