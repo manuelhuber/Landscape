@@ -1,4 +1,5 @@
-﻿using Grimity.Loops;
+﻿using System;
+using Grimity.Loops;
 using Grimity.Rng;
 using UnityEngine;
 
@@ -27,7 +28,10 @@ public class TerrainGenerator : MonoBehaviour {
         var meshFilter = GetComponent<MeshFilter>();
         var meshRenderer = GetComponent<MeshRenderer>();
         var heightMap = Perlin.GeneratePerlinArray(Width, Height, Octaves, Scale, Persistence, Lacunarity, Seed);
-        meshFilter.sharedMesh = GenerateMesh(Height, Width, heightMap);
+        var mesh = GenerateMesh(Height, Width, heightMap);
+        var collider = GetComponent<MeshCollider>();
+        collider.sharedMesh = mesh;
+        meshFilter.sharedMesh = mesh;
         if (SetTexture) {
             meshRenderer.sharedMaterial.mainTexture = GenerateTexture(Height, Width, heightMap);
         }
@@ -71,7 +75,7 @@ public class TerrainGenerator : MonoBehaviour {
     }
 
     private Texture2D GenerateTexture(int height, int width, float[,] heightMap) {
-        var texture = new Texture2D(width,height);
+        var texture = new Texture2D(width, height);
 
 
         var colors = new Color[height * width];
@@ -91,6 +95,14 @@ public class TerrainGenerator : MonoBehaviour {
         if (AutoUpdate) {
             RenderMesh();
         }
+
+            Debug.Log("foo");
+        if (Height < 1) {
+            Height = 1;
+        }
+
+        // Height = Math.Max(Height, 1);
+        Width = Math.Max(Width, 1);
     }
 }
 }
