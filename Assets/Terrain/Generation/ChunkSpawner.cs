@@ -25,7 +25,7 @@ public class ChunkSpawner {
 
         chunk.AddComponent<MeshRenderer>().material = _settings.material;
         chunk.AddComponent<Rigidbody>().isKinematic = true;
-        chunk.layer = _settings.layers;
+        chunk.layer = 9;
 
         var heightMap = Perlin.GeneratePerlinArray(_settings.chunkSize,
             _settings.chunkSize,
@@ -41,7 +41,8 @@ public class ChunkSpawner {
             heightMap,
             _settings.HeightAmplifier,
             _settings.heightCurve,
-            _settings.distanceBetweenVertices);
+            levelOfDetail: _settings.levelOfDetail,
+            distanceBetweenVertices: _settings.distanceBetweenVertices);
         var collider = chunk.AddComponent<MeshCollider>();
         collider.sharedMesh = mesh;
         meshFilter.sharedMesh = mesh;
