@@ -10,17 +10,61 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3678fb40d1bf84b03b9c01a8ff9f9ac0, type: 3}
-  m_Name: Default
+  m_Name: DefaultTerrain
   m_EditorClassIdentifier: 
-  chunkSize: 0
-  octaves: 0
-  persistence: 0
-  lacunarity: 0
-  scale: 0
+  autoUpdate: 1
+  octaves: 6
+  persistence: 0.4
+  lacunarity: 2
+  scale: 100
   heightCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.0012456626
+      value: -0.0050182194
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.21651433
+      value: 0.3609277
+      inSlope: 1.3862231
+      outSlope: 1.3862231
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.35475913
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.6941658
+      value: 0.5649786
+      inSlope: 0.7598059
+      outSlope: 1.7305049
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.13892062
+      outWeight: 0.15174116
+    - serializedVersion: 3
+      time: 0.9987547
+      value: 1.1557789
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  HeightAmplifier: 0
+  HeightAmplifier: 50
+  chunkSize: 145
+  material: {fileID: 2100000, guid: d108ef7c7883d41e6aad654d08166c7a, type: 2}
+  distanceBetweenVertices: 0.5
+  layers:
+    serializedVersion: 2
+    m_Bits: 512
+  colliderLod: 0
+  levelOfDetail: 0

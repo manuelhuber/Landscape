@@ -15,6 +15,7 @@ public class TerrainSettings : UpdatableData {
     public Material material;
     public float distanceBetweenVertices = 1;
     public LayerMask layers;
+    public int colliderLod;
     [Range(0, 4)] public int levelOfDetail;
 
     public float WorldLength() {

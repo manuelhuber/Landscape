@@ -1,5 +1,4 @@
-﻿using System;
-using Terrain.Generation;
+﻿using Terrain.Generation;
 using UnityEditor;
 using UnityEngine;
 
