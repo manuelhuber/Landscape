@@ -15,6 +15,9 @@ public class UserInput : MonoBehaviour {
     private bool _dragObject;
     private Placeable _placeable;
     private EndlessTerrainGenerator _terrainGenerator;
+    private float _leftClickDownTime;
+    private double _clickInterval = 0.5;
+    private Vector3 _mouseStart;
 
     private void Start() {
         _camera = GetComponent<Camera>();
@@ -32,21 +35,35 @@ public class UserInput : MonoBehaviour {
 
         var rightClick = Input.GetMouseButtonUp(1);
         var leftClickDown = Input.GetMouseButtonDown(0);
+        var leftClickPressed = Input.GetMouseButton(0);
+        if (leftClickDown) _leftClickDownTime = Time.time;
         var leftClickUp = Input.GetMouseButtonUp(0);
+        var isLeftClick = leftClickUp && Time.time - _leftClickDownTime < _clickInterval;
 
         if (Input.GetKeyDown(KeyCode.Space)) {
             var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
             AttachToCursor(cube);
         }
 
-        if (leftClickDown && Input.GetKey(KeyCode.LeftShift)) {
+        if (isLeftClick && Input.GetKey(KeyCode.LeftShift)) {
             var terrainChunk = MouseToTerrain().transform.gameObject.GetComponent<TerrainChunk>();
             _terrainGenerator.SpawnNeighbours(terrainChunk);
         }
 
-        if (leftClickUp && _dragObject) {
+        if (isLeftClick && _dragObject) {
             DetachFromCursor();
         }
+
+        if (leftClickPressed) {
+            var cameraTransform = _camera.transform;
+            var pos = cameraTransform.position;
+            var diff = Input.mousePosition - _mouseStart;
+            var movement = new Vector3(diff.x, 0, diff.y);
+            
+            cameraTransform.position = pos;
+        }
+
+        _mouseStart = Input.mousePosition;
     }
 
 
